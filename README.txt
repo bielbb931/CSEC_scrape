@@ -1,5 +1,15 @@
 CSEC Scraper (FMV CSEC certificates)
 
+#Quick start
+~Requires Python 3.12+
+
+#Windows (PowerShell)
+```powershell
+
+# 1) Clone
+git clone https://github.com/<you>/csec-scraper.git
+cd csec-scraper
+
 #Create & activate a virtual environment (Windows PowerShell)
 > py -3.12 -m venv .venv
 > Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
@@ -14,6 +24,9 @@ CSEC Scraper (FMV CSEC certificates)
 
 #Run the scraper
 > python scripts\run_csec.py
+
+# Output file:
+> .\output\csec_products.xlsx
 
 
 
