@@ -8,7 +8,7 @@ CSEC Scraper (FMV CSEC certificates)
 
 # 1) Clone
 git clone https://github.com/bielbb931/CSEC_scrape.git
-cd csec-scraper
+cd CSEC_scrape
 
 #Create & activate a virtual environment (Windows PowerShell)
 > py -3.12 -m venv .venv
