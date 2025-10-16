@@ -1,31 +1,28 @@
 CSEC Scraper (FMV CSEC certificates)
 
-1) Create & activate a virtual environment
-   Windows PowerShell:
-     py -3.12 -m venv .venv
-     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-     .\.venv\Scripts\Activate.ps1
+#Create & activate a virtual environment (Windows PowerShell)
+> py -3.12 -m venv .venv
+> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+> .\.venv\Scripts\Activate.ps1
 
-2) Install dependencies and Playwright browsers
-     python -m pip install -r requirements.txt
-     python -m playwright install
+#Install dependencies and Playwright browsers
+> python -m pip install -r requirements.txt
+> python -m playwright install
 
-3) (Optional) copy the env template and tweak
-     copy .env.example .env   (Windows)
-   Edit .env to change HEADLESS=0 to watch the browser, or OUT_XLSX path.
+#Watch the browser work
+> $env:HEADLESS="0"
 
-4) Run the scraper
-     python scripts\run_csec.py
+#Run the scraper
+> python scripts\run_csec.py
 
-5) Output
-   - Excel file at output\csec_products.xlsx
-   - Columns: Certification ID, Validity, Product name, Product category,
-              Insurance package, Certification date, Developer, ITSEF,
-              Product URL, Certification report URL
 
-How PDF parsing works (simple):
-- The script downloads the Certification Report PDF file for each product.
-- It extracts text, narrows to the section titled '2 Identification',
-  and looks for a line that begins with 'ITSEF'. The text after 'ITSEF'
-  (same line or the next line) is captured as the lab name.
-- If the PDF is image-based or formatted differently, ITSEF may be blank.
+
+How PDF parsing works (simplified):
+- The script navigates to CSEC certified products website and clicks into every product link
+- Extracts information each specific product table (including Certification ID, Product Name, Certification date)
+...The evaluation company is listed in the table but sometimes differs from the certification report - to get the evaluation company directly from the report pdf the script:
+- Downloads the Certification Report PDF file for each product
+- operates a 2 stage pdf extraction process:
+	1: if the line starts with ITSEF and the value is on the same line → Stage A returns that value (no table assumptions as formatting is not a table).If a report wraps the value to the next line (or two), Stage A assembles those continuation lines until the next label.
+	2: If line-breaking is weird, Stage B uses x/y coordinates: it finds the ITSEF label line and returns the text to its right on the same y-line (i.e., the visual “cell” next to it).
+	In both stages, we reject lines containing “Security Target”, “document version…”, CC tokens (EAL/ALC/AVA…), Developer, Sponsor, Common Criteria version, CEM version, QMS version, “3.1 release 5”
