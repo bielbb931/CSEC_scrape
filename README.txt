@@ -1,6 +1,7 @@
 CSEC Scraper (FMV CSEC certificates)
 
 #Using Py 3.12.0 (download if necessary)
+...download zip file, extract, then open windows powershell terminal in extracted folder
 
 1) Create & activate a virtual environment in Windows PowerShell:
      py -3.12 -m venv .venv
