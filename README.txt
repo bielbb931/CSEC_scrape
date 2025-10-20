@@ -30,3 +30,5 @@ How PDF parsing works (simple):
   and looks for a line that begins with 'ITSEF'. The text after 'ITSEF'
   (same line or the next line) is captured as the lab name.
 - If the PDF is image-based or formatted differently, ITSEF may be blank.
+
+Note. the ITSEF is given on the CSEC product page in table format however is inconsistent with the pdf (e.g. for "Re-evaluation of NetIQ® Sentinel™ 8.5.1.0" the product page states only "Combitech AB" as ITSEF, whereas pdf states "Combitech AB, Intertek/EWA-Canada") ... this is why we chose to integrate pdf parsing into python script
