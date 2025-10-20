@@ -1,7 +1,8 @@
 CSEC Scraper (FMV CSEC certificates)
 
-1) Create & activate a virtual environment
-   Windows PowerShell:
+#Using Py 3.12.0 (download if necessary)
+
+1) Create & activate a virtual environment in Windows PowerShell:
      py -3.12 -m venv .venv
      Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
      .\.venv\Scripts\Activate.ps1
@@ -10,9 +11,8 @@ CSEC Scraper (FMV CSEC certificates)
      python -m pip install -r requirements.txt
      python -m playwright install
 
-3) (Optional) copy the env template and tweak
-     copy .env.example .env   (Windows)
-   Edit .env to change HEADLESS=0 to watch the browser, or OUT_XLSX path.
+3) Watch the browser work
+     $env:HEADLESS="0"
 
 4) Run the scraper
      python scripts\run_csec.py
