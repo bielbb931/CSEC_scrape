@@ -18,4 +18,6 @@ CSEC Scraper (FMV CSEC certificates)
 4) Run the scraper
      python scripts\run_csec.py
 
+Output: should extract 83 rows and ITSEF should align with listings in pdf certifications per product
+
 *Note on pdf parsing. the ITSEF is given on the CSEC product page in table format however this is often inconsistent with the actual certification pdf (e.g. for "Re-evaluation of NetIQ® Sentinel™ 8.5.1.0" the product page states only "Combitech AB" as ITSEF, whereas pdf states "Combitech AB, Intertek/EWA-Canada") ... this is why we chose to integrate pdf parsing into python script. Also we knew that other scheme pages ONLY show certain info on certification pdf so this capability would be a must.
